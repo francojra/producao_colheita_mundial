@@ -36,11 +36,17 @@ prod1 <- prod %>%
          "Ethiopia", "Vietnam")) %>%
   view()
 
+prod2 <- prod1 %>%
+  filter(Entity %in% c("Brazil",
+         "Honduras", "Indonesia",
+         "Vietnam")) %>%
+  view()
+
 # Gráficos ---------------------------------------------------------------------------------------------------------------------------------
 
 options(scipen = 999)
 
-g1 <- ggplot(prod, aes(x = fct_reorder(Entity, producao), 
+g1 <- ggplot(prod1, aes(x = fct_reorder(Entity, producao), 
                        y = producao, fill = Entity)) +
   geom_col() +
   coord_flip() +
@@ -52,10 +58,10 @@ g1 <- ggplot(prod, aes(x = fct_reorder(Entity, producao),
   theme(legend.position = "none")
 g1
 
-g2 <- ggplot(prod, aes(Year, producao, color = Entity)) +
-  geom_point() +
-  geom_line() +
-  scale_color_brewer(palette = "Paired") +
+g2 <- ggplot(prod2, aes(Year, producao, color = Entity)) +
+  geom_point(size = 3) +
+  geom_line(size = 1.3) +
+  scale_color_brewer(palette = "Set1") +
   labs(x = "Anos", y = "Produção de café (toneladas)",
        color = "País") +
   theme_minimal(base_size = 15) +
