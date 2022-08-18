@@ -11,4 +11,12 @@
 
 ### O FAO disponibiliza esses dados por país e região desde 1961. Os
 ### valores de produção são comunicados em toneladas.
- 
+
+# Pacotes necessários para as análises -----------------------------------------------------------------------------------------------------
+
+library(tidyverse)
+
+# Selecionar dados -------------------------------------------------------------------------------------------------------------------------
+
+prod <- read.csv("coffee-bean-production.csv") 
+view(prod)
