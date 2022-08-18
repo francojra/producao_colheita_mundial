@@ -15,6 +15,7 @@
 # Pacotes necessários para as análises -----------------------------------------------------------------------------------------------------
 
 library(tidyverse)
+library(scales)
 
 # Carregar dados ---------------------------------------------------------------------------------------------------------------------------
 
@@ -34,3 +35,18 @@ prod1 <- prod %>%
          "Nicaragua", "Honduras", "China", "India", "Indonesia",
          "Ethiopia", "Vietnam")) %>%
   view()
+
+# Gráficos ---------------------------------------------------------------------------------------------------------------------------------
+
+options(scipen = 999)
+
+g1 <- ggplot(prod, aes(x = fct_reorder(Entity, producao), 
+                       y = producao, fill = Entity)) +
+  geom_col() +
+  coord_flip() +
+  scale_fill_brewer(palette = "Paired") +
+  scale_y_continuous(labels = comma, 
+                     expand = expansion(mult = c(0, .1))) +
+  labs(x = "País", y = "Produção de café (toneladas)") +
+  theme_minimal(base_size = 15)
+g1
