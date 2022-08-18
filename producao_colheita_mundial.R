@@ -51,3 +51,13 @@ g1 <- ggplot(prod, aes(x = fct_reorder(Entity, producao),
   theme_minimal(base_size = 15) +
   theme(legend.position = "none")
 g1
+
+g2 <- ggplot(prod, aes(Year, producao, color = Entity)) +
+  geom_point() +
+  geom_line() +
+  scale_color_brewer(palette = "Paired") +
+  labs(x = "Anos", y = "Produção de café (toneladas)",
+       color = "País") +
+  theme_minimal(base_size = 15) +
+  theme(legend.position = "top")
+g2
