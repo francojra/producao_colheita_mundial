@@ -16,6 +16,7 @@
 
 library(tidyverse)
 library(scales)
+library(gridExtra)
 
 # Carregar dados ---------------------------------------------------------------------------------------------------------------------------
 
@@ -53,17 +54,20 @@ g1 <- ggplot(prod1, aes(x = fct_reorder(Entity, producao),
   scale_fill_brewer(palette = "Paired") +
   scale_y_continuous(labels = comma, 
                      expand = expansion(mult = c(0, .1))) +
-  labs(x = "País", y = "Produção de café (toneladas)") +
+  labs(x = "País", y = "Produção de café (t)") +
   theme_minimal(base_size = 15) +
   theme(legend.position = "none")
 g1
 
 g2 <- ggplot(prod2, aes(Year, producao, color = Entity)) +
-  geom_point(size = 3) +
-  geom_line(size = 1.3) +
+  geom_point(size = 2.2) +
+  geom_line(size = 0.89) +
+  scale_y_continuous(labels = comma) +
   scale_color_brewer(palette = "Set1") +
-  labs(x = "Anos", y = "Produção de café (toneladas)",
+  labs(x = "Anos", y = "Produção de café (t)",
        color = "País") +
   theme_minimal(base_size = 15) +
-  theme(legend.position = "top")
+  theme(legend.justification = c(0.8, 0.5))
 g2
+
+grid.arrange(g1, g2)
