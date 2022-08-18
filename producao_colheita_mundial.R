@@ -16,7 +16,21 @@
 
 library(tidyverse)
 
-# Selecionar dados -------------------------------------------------------------------------------------------------------------------------
+# Carregar dados ---------------------------------------------------------------------------------------------------------------------------
 
 prod <- read.csv("coffee-bean-production.csv") 
 view(prod)
+names(prod)
+
+# Selecionar dados -------------------------------------------------------------------------------------------------------------------------
+
+prod <- prod %>%
+  rename(producao = Crops...Coffee..green...656...Production...5510...tonnes) %>%
+  select(Entity, Year, producao) %>%
+  view()
+
+prod1 <- prod %>%
+  filter(Entity %in% c("Brazil", "Peru", "Mexico", "Venezuela",
+         "Nicaragua", "Honduras", "China", "India", "Indonesia",
+         "Ethiopia", "Vietnam")) %>%
+  view()
