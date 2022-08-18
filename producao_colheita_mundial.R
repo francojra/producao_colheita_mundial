@@ -48,5 +48,6 @@ g1 <- ggplot(prod, aes(x = fct_reorder(Entity, producao),
   scale_y_continuous(labels = comma, 
                      expand = expansion(mult = c(0, .1))) +
   labs(x = "País", y = "Produção de café (toneladas)") +
-  theme_minimal(base_size = 15)
+  theme_minimal(base_size = 15) +
+  theme(legend.position = "none")
 g1
