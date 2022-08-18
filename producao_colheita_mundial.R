@@ -60,8 +60,8 @@ g1 <- ggplot(prod1, aes(x = fct_reorder(Entity, producao),
 g1
 
 g2 <- ggplot(prod2, aes(Year, producao, color = Entity)) +
-  geom_point(size = 2.2) +
-  geom_line(size = 0.89) +
+  geom_point(size = 2) +
+  geom_line(size = 0.9) +
   scale_y_continuous(labels = comma) +
   scale_color_brewer(palette = "Set1") +
   labs(x = "Anos", y = "Produção de café (t)",
