@@ -68,7 +68,7 @@ g2 <- ggplot(prod2, aes(Year, producao, color = Entity)) +
   scale_color_brewer(palette = "Set1") +
   labs(x = "Anos", y = "Produção de café (t)") +
   theme_minimal(base_size = 13) +
-  theme(legend.position = c(0.1, 0.8), 
+  theme(legend.position = "bottom", 
         legend.title = element_blank())
 g2
 
