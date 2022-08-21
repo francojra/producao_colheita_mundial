@@ -37,21 +37,28 @@ prod1 <- prod %>%
          "Nicaragua", "Honduras", "China", "India", "Indonesia",
          "Ethiopia", "Vietnam", "Guatemala", "Nicaragua",
          "Colombia", "Uganda", "Madagascar")) %>%
+  group_by(Entity) %>%
+  summarise(media = mean(producao),
+            sd = sd(producao),
+            n = n(), se = sd/sqrt(n)) %>%
   view()
 
-prod2 <- prod1 %>%
+prod2 <- prod %>%
   filter(Entity %in% c("Brazil", "Colombia", 
          "Mexico", "Indonesia",
-         "Vietnam")) %>%
+         "Vietnam", "Ethiopia")) %>%
   view()
 
 # Gráficos ---------------------------------------------------------------------------------------------------------------------------------
 
 options(scipen = 999)
 
-g1 <- ggplot(prod1, aes(x = fct_reorder(Entity, producao), 
-                       y = producao, fill = Entity)) +
+g1 <- ggplot(prod1, aes(x = fct_reorder(Entity, media), 
+                       y = media, fill = Entity)) +
   geom_col() +
+  geom_errorbar(aes(x = Entity, 
+             y = media, ymin = media - se, ymax = media + se),
+             size = 0.85, width = 0.3) +
   coord_flip() +
   scale_fill_manual(values = as.vector(alphabet(16))) +
   scale_y_continuous(labels = comma, 
